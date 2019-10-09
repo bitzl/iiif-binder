@@ -35,8 +35,30 @@ def generate(config: Config, metadata: Metadata, images: List[Image]) -> dict:
             "canvases": [
                 canvas(index, config, image) for (index, image) in enumerate(images)
             ],
+            "viewingHint": config.viewing_hint,
         }
     ]
+
+    if metadata.viewing_hint is not None:
+        manifest["viewingHint"] = metadata.viewing_hint
+    elif config.viewing_hint is not None:
+        manifest["viewingHint"] = config.viewing_hint
+    else:
+        manifest["viewingHint"] = "individuals"
+
+    if len(images) > 0:
+        thumbnail = images[0]
+        manifest["thumbnail"] = {
+            "@id": f"https://api.digitale-sammlungen.de/iiif/image/v2/{thumbnail.url_path}/full/!{config.thumbnail_size},{config.thumbnail_size}/0/default.jpg",
+            "service": {
+                "@context": "http://iiif.io/api/image/2/context.json",
+                "@id": f"https://api.digitale-sammlungen.de/iiif/image/v2/{thumbnail.url_path}",
+                "profile": "http://iiif.io/api/image/2/level2.json",
+                "protocol": "http://iiif.io/api/image",
+            },
+            "format": thumbnail.media_type,
+        }
+
     return manifest
 
 

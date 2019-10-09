@@ -4,13 +4,14 @@ from pydantic import BaseModel
 class Config(BaseModel):
     base_url: str
     url_identifier: str
-    metadata: Metadata
+    viewing_hint: str = "individuals"
 
 
 class Metadata(BaseModel):
     title: str = None
     description: str = None
     navdate: str = None
+    viewing_hint: str = "individuals"
 
 
 class Image(BaseModel):
