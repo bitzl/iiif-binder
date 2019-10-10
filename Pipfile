@@ -10,6 +10,7 @@ black = "==19.3b0"
 [packages]
 fastapi = "*"
 uvicorn = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
