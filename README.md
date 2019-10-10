@@ -18,8 +18,20 @@ Additional metadata (e.g. a title or description) can be define via file named `
 
 ## Usage
 
-The application takes two arguments: The base path to the top level directory where the hierarchical image identifiers are resolved to relatively, and an optional base url for your image API endpoint for the manifest (defaults to http://127.0.0.1).
+The application reads its configuration from a JSON file named `config.json` in the directory where the app is started.
+
+App startup:
 
 ```
 $ uvicorn main:app /base/path/image/folders [http://image/api/basepath]
+```
+
+Minimal `config.json`:
+
+```json
+{
+    "base_url": "http://localhost:8000",
+    "image_base_url": "http://localhost:1234",
+    "base_path": "images"
+}
 ```
