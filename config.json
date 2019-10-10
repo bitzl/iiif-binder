@@ -1,0 +1,6 @@
+{
+    "base_url": "http://localhost:8000",
+    "image_base_url": "http://localhost:1234",
+    "url_identifier": "???",
+    "base_path": "images"
+}

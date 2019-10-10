@@ -7,17 +7,19 @@ from pydantic import BaseModel
 from iiif_binder import Config, Metadata, Image
 
 
-def generate(config: Config, metadata: Metadata, images: List[Image]) -> dict:
+def generate_manifest(
+    identifier: str, config: Config, metadata: Metadata, images: List[Image]
+) -> dict:
     manifest = {
         "@context": "http://iiif.io/api/presentation/2/context.json",
         "@type": "sc:Manifest",
-        "@id": f"{config.base_url}/{config.url_identifier}/manifest",
+        "@id": f"{config.base_url}/{identifier}/manifest",
     }
 
     if metadata.title is not None:
         manifest["label"] = metadata.title
     else:
-        manifest["label"] = config.url_identifier
+        manifest["label"] = identifier
 
     if metadata.navdate is not None:
         manifest["navdate"] = metadata.navdate
@@ -67,7 +69,7 @@ def canvas(index: int, config: Config, image: Image):
     canvas = {
         "@id": canvas_id,
         "@type": "sc:Canvas",
-        "label": image.url_path,
+        "label": image.label,
         "images": [
             {
                 "@type": "oa:Annotation",
