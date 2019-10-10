@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from iiif_binder import load_config
+
+config = load_config()
 
 app = FastAPI()
 

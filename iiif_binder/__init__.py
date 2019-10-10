@@ -1,5 +1,7 @@
 from pydantic import BaseModel
 
+import json
+
 
 class Config(BaseModel):
     base_url: str
@@ -20,3 +22,9 @@ class Image(BaseModel):
     width: int
     height: int
     media_type: str
+
+
+def load_config() -> Config:
+    with open("config.json") as fp:
+        data = json.load(fp)
+    return Config(**data)
