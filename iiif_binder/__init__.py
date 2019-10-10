@@ -6,7 +6,6 @@ from pydantic import BaseModel, Path
 
 class Config(BaseModel):
     base_url: str
-    url_identifier: str
     viewing_hint: str = "individuals"
     base_path: Path
     image_base_url: str
