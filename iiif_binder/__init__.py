@@ -1,5 +1,6 @@
 import json
 from os.path import exists
+from typing import Optional
 
 from pydantic import BaseModel, Path
 
@@ -13,7 +14,7 @@ class Config(BaseModel):
 
 
 class Metadata(BaseModel):
-    title: str = None
+    title: Optional[str] = None
     description: str = None
     navdate: str = None
     viewing_hint: str = "individuals"
@@ -22,7 +23,7 @@ class Metadata(BaseModel):
 
 
 class Image(BaseModel):
-    url_id: str
+    url_id: str = None
     url_path: str
     width: int
     height: int
