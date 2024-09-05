@@ -1,5 +1,6 @@
 import json
 from os.path import exists
+from typing import Optional
 
 from pydantic import BaseModel, Path
 
@@ -17,7 +18,7 @@ class Metadata(BaseModel):
     description: str = None
     navdate: str = None
     viewing_hint: str = "individuals"
-    license: str = None
+    license: Optional[str] = None
     attribution: str = None
 
 
