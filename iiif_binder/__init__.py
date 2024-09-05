@@ -23,7 +23,7 @@ class Metadata(BaseModel):
 
 
 class Image(BaseModel):
-    url_id: str = 42
+    url_id: str = None
     url_path: str
     width: int
     height: int
